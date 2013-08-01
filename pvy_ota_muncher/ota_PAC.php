@@ -5,12 +5,12 @@
 #
 
 # variables
-$Device = $_GET['device'] ;
-$Ver = $_GET['otaname'] ;
-$InOrOut = $_GET['type'] ;
-$Download= $_GET['dlurl'] ;
-$Md5= $_GET['md5'] ;
-$Password = hash('md5', $_GET['pass']); 
+$Device = htmlspecialchars($_GET['device']);
+$Ver = htmlspecialchars($_GET['otaname']) ;
+$InOrOut = htmlspecialchars($_GET['type']) ;
+$Download= htmlspecialchars($_GET['dlurl']) ;
+$Md5= htmlspecialchars($_GET['md5']) ;
+$Password = htmlspecialchars(hash('md5', $_GET['pass'])); 
 $Pass='5e69ffa8a3f41c4c1de42b123f3c6db8';
 # demo get data
 # ota_PAC.php?device=maguro&otaname=nightly.today.23&md5=abc&dlurl=http://blahblah.com&type=check
@@ -19,9 +19,9 @@ $Pass='5e69ffa8a3f41c4c1de42b123f3c6db8';
 # ota_PAC.php?device=maguro&otaname=nightly.today.23&md5=abc&dlurl=http://blahblah.com&type=upload&pass=####
 
 # did we get the correct stuffs
-if ($InOrOut == "upload"){
+if ($InOrOut == "upload" || $InOrOut == null){
 	# check pass
-	if ($Password == $Pass){
+	if ($Password == $Pass && $Device != null){
 		file_put_contents("./devices/" . $Device, $Download.",".$Device.",".$Ver.",".$Md5);
 		if(file_exists ("./devices/" . $Device)) {
 			# send the details to the remote for checking
