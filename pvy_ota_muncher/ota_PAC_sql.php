@@ -30,7 +30,7 @@ $Pass = '5e69ffa8a3f41c4c1de42b123f3c6db8';
 // demo put data
 // ota_PAC_sql.php?device=maguro&otaname=nightly.today.23&md5=abc&dlurl=http://blahblah.com&type=upload&pass=####
 
-$con = mysqli_connect ( "localhost", "###", "###", "###" );
+$con = mysqli_connect ( "localhost", "blownco_ota", "blownco_ota", "blownco_ota" );
 // Check connection
 if (mysqli_connect_errno ()) {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error ();
