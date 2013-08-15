@@ -27,7 +27,7 @@ for prefiling the form with data (not all fields are req'd)
 		&md5=[md5 of the update zip]  
 		&pass=[password for the uploads] `
 		
-Demo Site! [link](http://blownco.com/ota/?device=it_is_easy_to&otaname=pass_data_to_the_form&dlurl=See_what_i_mean&md5=abc123def456&pass=###)
+Demo Site! [link](http://blownco.com/ota/?device=it_is_easy_to&version=pass_data_to_the_form&dlurl=See_what_i_mean&md5=abc123def456&pass=###)
 
 ![demo][1]
 
