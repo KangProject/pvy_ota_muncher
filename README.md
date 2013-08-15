@@ -9,10 +9,10 @@ still very much in progress
 
 Usage is simple
 for a direct update no form use 
-**host url**/pac_OTA.php?device=**ro.cm.device value**&otaname=**ro.pacversion value in new update**&dlurl=**url to the update**&md5=**md5 of the update zip**&pass=**password for the uploads**
+**host url** /pac_OTA.php?device= **ro.cm.device value** &otaname= **ro.pacversion value in new update** &dlurl= **url to the update** &md5= **md5 of the update zip** &pass= **password for the uploads**
 
 for prefiling the form with data (not all fields are req'd)
-**host url**/?device=**ro.cm.device value**&version=**ro.pacversion value in new update**&dlurl=**url to the update**&md5=**md5 of the update zip**&pass=**password for the uploads**
+**host url** /?device= **ro.cm.device value** &version= **ro.pacversion value in new update ** &dlurl= **url to the update** &md5= **md5 of the update zip** &pass= **password for the uploads**
 
 ![demo][1]
 
