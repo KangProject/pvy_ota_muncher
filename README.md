@@ -17,6 +17,8 @@ for a direct update no form use (ALL FIELDS REQ'D)
 		&md5=[md5 of the update zip]  
 		&pass=[password for the uploads] `
 
+		
+		
 for prefiling the form with data (not all fields are req'd)  
 
 `[host url]/?device=[ro.cm.device value]  
@@ -24,7 +26,8 @@ for prefiling the form with data (not all fields are req'd)
 		&dlurl=[url to the update]  
 		&md5=[md5 of the update zip]  
 		&pass=[password for the uploads] `
-
+		
+Demo Site! [link](http://blownco.com/ota/ota_PAC.php?device=it_is_easy_to&otaname=pass_data_to_the_form&dlurl=See_what_i_mean&md5=abc123def456&pass=###)
 
 ![demo][1]
 
