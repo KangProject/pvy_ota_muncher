@@ -47,7 +47,7 @@ $Password = htmlspecialchars(hash('md5', $_GET['pass']));
 						</div>
 					</li>
 					<li id="li_3">
-						<p>Download URL <cap>(Direct Link!)</cap></p>
+						<p>Download URL <cap>(Direct Link! not anything that takes you to a webpage first!)</cap></p>
 						<div>
 							<input type="text" name="dlurl" size="50" value="<?php echo $Download; ?>"/>
 						</div>
@@ -63,6 +63,11 @@ $Password = htmlspecialchars(hash('md5', $_GET['pass']));
 						<div>
 							<input type="password" name="pass" size="50" value="<?php echo $Password; ?>"/>
 						</div>
+					</li>
+					<li id="li_6">
+						<p>Rom Status <cap>(Hint: Experiments = Nightly!)</cap></p>
+						<input type="radio" name="type" value="nightly"<?php if($InOrOut=='nightly' || $InOrOut==''){ echo "checked=\"checked\"";}?>>Nighlies<br>
+						<input type="radio" name="type" value="stable"<?php if($InOrOut=='stable'){ echo "checked=\"checked\"";}?>>Stable<br>
 					</li>
 					<li>
 						<p align="right">

@@ -3,6 +3,8 @@
 // pvyParts
 // OTA Checker script sql database reqd
 //
+$InOrOut = htmlspecialchars ( $_GET ['type'] );
+
 $DEBUG = true;
 function call_sql($a, $b) {
 	$rslts = mysqli_query ( $a, $b );
@@ -15,7 +17,7 @@ function call_sql($a, $b) {
 	}
 }
 
-$con = mysqli_connect ( "localhost", "blownco_ota", "blownco_ota", "blownco_ota" );
+$con = mysqli_connect ( "localhost", "###", "###", "###" );
 // Check connection
 if (mysqli_connect_errno ()) {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error ();
@@ -28,7 +30,16 @@ if (mysqli_connect_errno ()) {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Get PAC!</title>
+	<title>Get PAC! <?php 
+	if ($InOrOut == 'nightly'){
+		echo 'Nightly Builds';
+	} else if ($InOrOut == 'stable'){
+		echo 'Stable Builds';
+	} else {
+		#DEFAULT TO SOMTHING...
+		echo 'Waka Waka Waka';
+	}
+	?></title>
 	<link rel="stylesheet" type="text/css" href="view.css" media="all">
 </head>
 <body id="main_body">
@@ -37,28 +48,44 @@ if (mysqli_connect_errno ()) {
 			<h1>
 				Get PAC!
 			</h1>
-			
-			<form action="ota_PAC.php" method="get">
 				<div class="form_description">
 					<h2>Get PAC!</h2>
 					<p align="center">find your Device Below!</p>
+					<form method="get"  align="center">
+						<input type="radio" name="type" value="nightly"<?php if($InOrOut=='nightly' || $InOrOut==''){ echo "checked=\"checked\"";}?>>Nighlies<br>
+						<input type="radio" name="type" value="stable"<?php if($InOrOut=='stable'){ echo "checked=\"checked\"";}?>>Stable<br>
+						<input  type="submit" value="Update!" >
+					</form>
+					
 				</div>
-				<ul>
+				<table class="table table-bordered table-striped">
+				    <tr>
+				      <th>Device</th>
+				      <th>Version</th>
+				      <th>URL</th>
+				    </tr>
+				
 				<?php
-				$sql = "SELECT * FROM (`nightly`) JOIN (`stable`) ON (`nightly`.device = `stable`.device)";
+				if ($InOrOut == 'nightly' || $InOrOut == ''){
+					$sql = "SELECT * FROM (`nightly`) ORDER BY (`device`) ASC";
+				} else if ($InOrOut == 'stable' ){
+					$sql = "SELECT * FROM (`stable`) ORDER BY (`device`) ASC";
+				}
 				$sqlr = call_sql ( $con, $sql );
-
 				while ( $row = mysqli_fetch_array ( $sqlr ) ) {
-					echo "<li>";
-					echo "<h3>" . $row ['device'] . "</h3>";
-					echo "<p>" . $row ['version'];
-					echo "<br>";
+					echo "<tr><td>";
+					echo "<h3>" . $row ['device'] . "</td><td><p>" . $row ['version'] . "</p></td></h3><td>";
 					echo "<a href=\"" . $row ['dlurl'] . "\">" . $row ['dlurl'] . "</a></p>";
-					echo "</li>";						
+					echo "<cap> MD5: " . $row ['md5'] . "</cap>";
+					echo "</td></tr>";
 				}
 				?>
-				
-				</ul>
+				<tr>
+				      <th>Device</th>
+				      <th>Version</th>
+				      <th>URL</th>
+				    </tr>
+				</table>
 									<footer>© pvyParts 2013</footer>
 				
 			</form>
