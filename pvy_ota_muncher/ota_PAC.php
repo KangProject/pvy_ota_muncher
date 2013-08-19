@@ -4,6 +4,10 @@
 // OTA Checker script sql database reqd
 //
 
+// Thanks Tom :P
+
+include("config.php");
+
 $DEBUG = true;
 function call_sql($a, $b) {
 	$rslts = mysqli_query ( $a, $b );
@@ -30,7 +34,7 @@ $Pass = '5e69ffa8a3f41c4c1de42b123f3c6db8';
 // demo put data
 // ota_PAC_sql.php?device=maguro&otaname=nightly.today.23&md5=abc&dlurl=http://blahblah.com&type=upload&pass=####
 
-$con = mysqli_connect ( "localhost", "###", "###", "###" );
+$con = mysqli_connect ($dbhost, $dbuser, $dbpass, $dbname);
 // Check connection
 if (mysqli_connect_errno ()) {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error ();
@@ -41,12 +45,12 @@ if (mysqli_connect_errno ()) {
 // field1='value1', field2='value2', field3='value3', ...
 
 // Create tabl
-$sql = "CREATE TABLE nightly(device CHAR(30),version TINYTEXT,dlurl TINYTEXT, md5 CHAR(35))";
+$sql = "CREATE TABLE IF NOT EXISTS nightly(device CHAR(30),version TINYTEXT,dlurl TINYTEXT, md5 CHAR(35))";
 call_sql ( $con, $sql );
 $sql = "ALTER TABLE nightly ADD PRIMARY KEY (device)";
 call_sql ( $con, $sql );
 // Create table
-$sql = "CREATE TABLE stable(device CHAR(30),version TINYTEXT,dlurl TINYTEXT, md5 CHAR(35))";
+$sql = "CREATE TABLE IF NOT EXISTS stable(device CHAR(30),version TINYTEXT,dlurl TINYTEXT, md5 CHAR(35))";
 call_sql ( $con, $sql );
 $sql = "ALTER TABLE stable ADD PRIMARY KEY (device)";
 call_sql ( $con, $sql );
@@ -63,13 +67,13 @@ if ($InOrOut == "nightly" || $InOrOut == null) {
 		echo "";
 		$sql = "select * from nightly WHERE device='$Device'";
 		$rslt = mysqli_fetch_array ( call_sql ( $con, $sql ) );
-		echo $rslt [dlurl];
+		echo $rslt ['dlurl'];
 		echo ",";
-		echo $rslt [device];
+		echo $rslt ['device'];
 		echo ",";
-		echo $rslt [version];
+		echo $rslt ['version'];
 		echo ",";
-		echo $rslt [md5];
+		echo $rslt ['md5'];
 		
 		echo "";
 	} else {

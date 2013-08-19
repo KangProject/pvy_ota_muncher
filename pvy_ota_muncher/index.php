@@ -25,12 +25,13 @@ $Password = htmlspecialchars(hash('md5', $_GET['pass']));
 	<img id="top" src="top.png" alt="">
 		<div id="form_container">
 			<h1>
-				OTA Muncher!
+				<img style="float:middle" src="http://www.pac-rom.com/images/logo.png" alt="PAC-man logo" />
 			</h1>
 			
 			<form action="ota_PAC.php" method="get">
 				<div class="form_description">
 					<h2>OTA Muncher!</h2>
+					
 					<p align="center">Update the records for a device by filling in the form!</p>
 				</div>
 				<ul>

@@ -3,9 +3,12 @@
 // pvyParts
 // OTA Checker script sql database reqd
 //
+
+include("config.php");
+
 $InOrOut = htmlspecialchars ( $_GET ['type'] );
 
-$DEBUG = true;
+$DEBUG = false;
 function call_sql($a, $b) {
 	$rslts = mysqli_query ( $a, $b );
 	if ($rslts) {
@@ -17,7 +20,7 @@ function call_sql($a, $b) {
 	}
 }
 
-$con = mysqli_connect ( "localhost", "###", "###", "###" );
+$con = mysqli_connect ($dbhost, $dbuser, $dbpass, $dbname);
 // Check connection
 if (mysqli_connect_errno ()) {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error ();
@@ -44,9 +47,9 @@ if (mysqli_connect_errno ()) {
 </head>
 <body id="main_body">
 	<img id="top" src="top.png" alt="">
-		<div id="form_container">
+		<div id="form_container" class="width:1000px;">
 			<h1>
-				Get PAC!
+				<img style="float:middle" src="http://www.pac-rom.com/images/logo.png" alt="PAC-man logo" />
 			</h1>
 				<div class="form_description">
 					<h2>Get PAC!</h2>
