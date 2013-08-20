@@ -3,8 +3,7 @@
 // pvyParts
 // OTA Checker script sql database reqd
 //
-
-include("config.php");
+include ("config.php");
 
 $InOrOut = htmlspecialchars ( $_GET ['type'] );
 
@@ -20,58 +19,60 @@ function call_sql($a, $b) {
 	}
 }
 
-$con = mysqli_connect ($dbhost, $dbuser, $dbpass, $dbname);
+$con = mysqli_connect ( $dbhost, $dbuser, $dbpass, $dbname );
 // Check connection
 if (mysqli_connect_errno ()) {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error ();
 }
-
-
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Get PAC! <?php 
-	if ($InOrOut == 'nightly'){
+	<title>Get PAC! <?php
+	if ($InOrOut == 'nightly') {
 		echo 'Nightly Builds';
-	} else if ($InOrOut == 'stable'){
+	} else if ($InOrOut == 'stable') {
 		echo 'Stable Builds';
 	} else {
-		#DEFAULT TO SOMTHING...
+		// EFAULT TO SOMTHING...
 		echo 'Waka Waka Waka';
 	}
 	?></title>
 	<link rel="stylesheet" type="text/css" href="view.css" media="all">
+
 </head>
 <body id="main_body">
 	<img id="top" src="top.png" alt="">
-		<div id="form_container" class="width:1000px;">
-			<h1>
-				<img style="float:middle" src="http://www.pac-rom.com/images/logo.png" alt="PAC-man logo" />
-			</h1>
-				<div class="form_description">
-					<h2>Get PAC!</h2>
-					<p align="center">find your Device Below!</p>
-					<form method="get"  align="center">
-						<input type="radio" name="type" value="nightly"<?php if($InOrOut=='nightly' || $InOrOut==''){ echo "checked=\"checked\"";}?>>Nighlies<br>
-						<input type="radio" name="type" value="stable"<?php if($InOrOut=='stable'){ echo "checked=\"checked\"";}?>>Stable<br>
-						<input  type="submit" value="Update!" >
-					</form>
-					
-				</div>
-				<table class="table table-bordered table-striped">
-				    <tr>
-				      <th>Device</th>
-				      <th>Version</th>
-				      <th>URL</th>
-				    </tr>
+		<div id="form_container">
+			<img style="float: middle"
+				src="http://www.pac-rom.com/images/logo.png" alt="PAC-man logo" />
+			<h2>Get PAC!</h2>
+			<p align="center">Find your Device Below!</p>
+			<form method="get" align="right">
+			    <input type="radio" name="type" id="nightly"
+					value="nightly"
+					<?php if($InOrOut=='nightly' || $InOrOut==''){ echo " checked";}?>/>
+				<label for="nightly" style="-webkit-border-radius: 4px 0 0 0;-moz-border-radius: 4px 0 0 0;border-radius: 4px 0 0 0;">Nighlies</label> 
+				<input type="radio"
+					name="type" id="stable" value="stable"
+					<?php if($InOrOut=='stable'){ echo " checked";}?>/>
+				<label for="stable" style="-webkit-border-radius: 0 4px 0 0;-moz-border-radius: 0 4px 0 0;border-radius: 0 4px 0 0;">Stable</label> 
+				<input type="submit" value="Update!" id="submit" />
+			</form>
+
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th>Device</th>
+					<th>Version</th>
+					<th>URL</th>
+				</tr>
 				
 				<?php
-				if ($InOrOut == 'nightly' || $InOrOut == ''){
+				if ($InOrOut == 'nightly' || $InOrOut == '') {
 					$sql = "SELECT * FROM (`nightly`) ORDER BY (`device`) ASC";
-				} else if ($InOrOut == 'stable' ){
+				} else if ($InOrOut == 'stable') {
 					$sql = "SELECT * FROM (`stable`) ORDER BY (`device`) ASC";
 				}
 				$sqlr = call_sql ( $con, $sql );
@@ -84,14 +85,16 @@ if (mysqli_connect_errno ()) {
 				}
 				?>
 				<tr>
-				      <th>Device</th>
-				      <th>Version</th>
-				      <th>URL</th>
-				    </tr>
-				</table>
-									<footer>© pvyParts 2013</footer>
-				
+					<th>Device</th>
+					<th>Version</th>
+					<th>URL</th>
+				</tr>
+			</table>
+			<footer>© pvyParts 2013</footer>
+
 			</form>
-		</div> <img id="bottom" src="bottom.png" alt="">
+		</div>
+	<img id="bottom" src="bottom.png" alt="">
+
 </body>
 </html>
