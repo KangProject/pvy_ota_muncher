@@ -36,7 +36,7 @@ if (mysqli_connect_errno ()) {
 	} else if ($InOrOut == 'stable') {
 		echo 'Stable Builds';
 	} else {
-		// EFAULT TO SOMTHING...
+		// DEFAULT TO SOMTHING...
 		echo 'Waka Waka Waka';
 	}
 	?></title>
@@ -44,30 +44,29 @@ if (mysqli_connect_errno ()) {
 
 </head>
 <body id="main_body">
-	<img id="top" src="top.png" alt="">
-		<div id="form_container">
-			<img style="float: middle"
-				src="http://www.pac-rom.com/images/logo.png" alt="PAC-man logo" />
-			<h2>Get PAC!</h2>
-			<p align="center">Find your Device Below!</p>
-			<form method="get" align="right">
-			    <input type="radio" name="type" id="nightly"
-					value="nightly"
-					<?php if($InOrOut=='nightly' || $InOrOut==''){ echo " checked";}?>/>
-				<label for="nightly" style="-webkit-border-radius: 4px 0 0 0;-moz-border-radius: 4px 0 0 0;border-radius: 4px 0 0 0;">Nighlies</label> 
-				<input type="radio"
-					name="type" id="stable" value="stable"
-					<?php if($InOrOut=='stable'){ echo " checked";}?>/>
-				<label for="stable" style="-webkit-border-radius: 0 4px 0 0;-moz-border-radius: 0 4px 0 0;border-radius: 0 4px 0 0;">Stable</label> 
-				<input type="submit" value="Update!" id="submit" />
-			</form>
+	<div id="form_container">
+		<img style="float: middle"
+			src="http://www.pac-rom.com/images/logo.png" alt="PAC-man logo" />
+		<h2>Get PAC!</h2>
+		<p align="center">Find your Device Below!</p>
+		<form method="get" align="right">
+			<input type="radio" name="type" id="nightly" value="nightly"
+				<?php if($InOrOut=='nightly' || $InOrOut==''){ echo " checked";}?> />
+			<label for="nightly"
+				style="-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">Nighlies</label>
+			<input type="radio" name="type" id="stable" value="stable"
+				<?php if($InOrOut=='stable'){ echo " checked";}?> /> <label
+				for="stable"
+				style="-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">Stable</label>
+			<input type="submit" value="Update!" id="submit" />
+		</form>
 
-			<table class="table table-bordered table-striped">
-				<tr>
-					<th>Device</th>
-					<th>Version</th>
-					<th>URL</th>
-				</tr>
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>Device</th>
+				<th>Version</th>
+				<th>URL</th>
+			</tr>
 				
 				<?php
 				if ($InOrOut == 'nightly' || $InOrOut == '') {
@@ -85,16 +84,14 @@ if (mysqli_connect_errno ()) {
 				}
 				?>
 				<tr>
-					<th>Device</th>
-					<th>Version</th>
-					<th>URL</th>
-				</tr>
-			</table>
-			<footer>Â© pvyParts 2013</footer>
+				<th>Device</th>
+				<th>Version</th>
+				<th>URL</th>
+			</tr>
+		</table>
+		<footer>© pvyParts 2013</footer>
 
-			</form>
-		</div>
-	<img id="bottom" src="bottom.png" alt="">
-
+		</form>
+	</div>
 </body>
 </html>
