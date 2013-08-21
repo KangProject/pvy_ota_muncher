@@ -41,9 +41,11 @@ $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
 							Device
 							<cap>(eg. Maguro)</cap>
 						</p>
+						
+						
 						<div>
 							<input type="text" id="device" name="device" size="50"
-								value="<?php echo $Device; ?>" />
+								value="<?php echo $Device; ?>" required/>
 						</div>
 					</li>
 					<li id="li_2">
@@ -53,7 +55,7 @@ $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
 						</p>
 						<div>
 							<input type="text" id="version" name="otaname" size="50"
-								value="<?php echo $Ver; ?>" />
+								value="<?php echo $Ver; ?>" required/>
 						</div>
 					</li>
 					<li id="li_3">
@@ -64,7 +66,7 @@ $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
 						</p>
 						<div>
 							<input type="text" name="dlurl" size="50"
-								value="<?php echo $Download; ?>" />
+								value="<?php echo $Download; ?>" required/>
 						</div>
 					</li>
 					<li id="li_4">
@@ -74,7 +76,7 @@ $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
 						</p>
 						<div>
 							<input type="text" id="md5" name="md5" size="50"
-								value="<?php echo $Md5; ?>" />
+								value="<?php echo $Md5; ?>" required/>
 						</div>
 					</li>
 					<li id="li_5">
@@ -84,7 +86,7 @@ $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
 						</p>
 						<div>
 							<input type="password" name="pass" size="50"
-								value="<?php echo $Password; ?>" />
+								value="<?php echo $Password; ?>" required/>
 						</div>
 					</li>
 					<li id="li_6">
@@ -102,7 +104,7 @@ $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
 					</li>
 					<li>
 						<p align="center">
-							<input type="submit" id="submit" style="width:90%;align:middle;" value="Send this bad boy!">
+							<input type="submit" id="submit" style="width:90%;align:middle;" name="from" value="Send this bad boy!">
 						
 						</p>
 					</li>

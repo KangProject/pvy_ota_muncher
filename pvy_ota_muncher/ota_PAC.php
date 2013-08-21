@@ -27,13 +27,13 @@ $InOrOut = htmlspecialchars ( $_GET ['type'] );
 $Download = htmlspecialchars ( $_GET ['dlurl'] );
 $Md5 = htmlspecialchars ( $_GET ['md5'] );
 $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
+$from = htmlspecialchars ( $_GET ['from'] );
 $Pass = '5e69ffa8a3f41c4c1de42b123f3c6db8';
 // demo get data
 // ota_PAC_sql.php?device=maguro&otaname=nightly.today.23&md5=abc&dlurl=http://blahblah.com&type=check
 
 // demo put data
 // ota_PAC_sql.php?device=maguro&otaname=nightly.today.23&md5=abc&dlurl=http://blahblah.com&type=upload&pass=####
-
 $con = mysqli_connect ($dbhost, $dbuser, $dbpass, $dbname);
 // Check connection
 if (mysqli_connect_errno ()) {
@@ -64,18 +64,18 @@ if ($InOrOut == "nightly" || $InOrOut == null) {
 				ON DUPLICATE KEY UPDATE
 				device='$Device', version='$Ver', dlurl='$Download', md5='$Md5'";
 		call_sql ( $con, $sql );
-		echo "";
+		//echo "";
 		$sql = "select * from nightly WHERE device='$Device'";
 		$rslt = mysqli_fetch_array ( call_sql ( $con, $sql ) );
-		echo $rslt ['dlurl'];
-		echo ",";
-		echo $rslt ['device'];
-		echo ",";
-		echo $rslt ['version'];
-		echo ",";
-		echo $rslt ['md5'];
-		
-		echo "";
+		//echo $rslt ['dlurl'];
+		//echo ",";
+		//echo $rslt ['device'];
+		//echo ",";
+		//echo $rslt ['version'];
+		//echo ",";
+		//echo $rslt ['md5'];
+		header( 'Location: http://www.pac-rom.com/ota/getPAC.php?device='.$Device."&type=".$InOrOut );
+						
 	} else {
 		// no permision!
 		echo "#BLAMETYLER,NOT_AUTHORISED";
@@ -88,17 +88,19 @@ if ($InOrOut == "nightly" || $InOrOut == null) {
 				ON DUPLICATE KEY UPDATE
 				device='$Device', version='$Ver', dlurl='$Download', md5='$Md5'";
 		call_sql ( $con, $sql );
-		echo "";
+		//echo "";
 		$sql = "select * from stable WHERE device='$Device'";
 		$rslt = mysqli_fetch_array ( call_sql ( $con, $sql ) );
-		echo $rslt [dlurl];
-		echo ",";
-		echo $rslt [device];
-		echo ",";
-		echo $rslt [version];
-		echo ",";
-		echo $rslt [md5];
-		echo "";
+		//echo $rslt [dlurl];
+		//echo ",";
+		//echo $rslt [device];
+		//echo ",";
+		//echo $rslt [version];
+		//echo ",";
+		//echo $rslt [md5];
+		//echo "";
+		header( 'Location: http://www.pac-rom.com/ota/getPAC.php?device='.$Device."&type=".$InOrOut );
+				
 	} else {
 		// no permision!
 		echo "#BLAMETYLER,NOT_AUTHORISED";
@@ -117,6 +119,7 @@ if ($InOrOut == "nightly" || $InOrOut == null) {
 		echo $rslt [version];
 		echo ",";
 		echo $rslt [md5];
+						
 	} else {
 		echo "#BLAMETYLER,NO_NIGHTLY_CONFIG_FOUND$";
 	}
@@ -142,5 +145,4 @@ if ($InOrOut == "nightly" || $InOrOut == null) {
 } else {
 	echo "#BLAMETYLER,NO_PARAMS";
 }
-
 ?>
