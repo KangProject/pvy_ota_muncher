@@ -18,13 +18,16 @@ function call_sql($a, $b) {
 			echo "Error: " . mysqli_error ( $a );
 		}
 	}
-}
+} 
 
 // variables
 $Device = htmlspecialchars ( $_GET ['device'] );
 $Ver = htmlspecialchars ( $_GET ['otaname'] );
 $InOrOut = htmlspecialchars ( $_GET ['type'] );
 $Download = htmlspecialchars ( $_GET ['dlurl'] );
+if ($Download == ''){
+	$Download = htmlspecialchars ( $_GET ['url'] );
+}
 $Md5 = htmlspecialchars ( $_GET ['md5'] );
 $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
 $from = htmlspecialchars ( $_GET ['from'] );
