@@ -92,14 +92,9 @@ $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
 					<li id="li_6">
 						<p>
 							Rom Status
-							<cap>(Hint: Experiments = Nightly!)</cap>
-						</p> <input id="nightly" type="radio"  name="type" value="nightly"
-						<?php if($InOrOut=='nightly' || $InOrOut==''){ echo " checked";}?>>
-						<label for="nightly" style="margin: 2px;width:50px;">Nighlies</label><br>
-							<input type="radio" id="stable"  name="type" value="stable"
-								<?php if($InOrOut=='stable'){ echo " checked";}?>>
-						<label for="stable" style="margin: 2px;width:50px;">Stable</label><br>
-								
+							<cap>(Hint: Unofficial-Official = Self Built)</cap>
+						</p> <input id="unofficial" type="radio"  name="type" value="unofficial" checked>
+						<label for="unofficial" style="margin: 2px;width:150px;">Unofficial-Official</label><br>								
 					
 					</li>
 					<li>

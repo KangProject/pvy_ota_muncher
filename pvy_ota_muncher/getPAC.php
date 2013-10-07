@@ -2,6 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <?php
+$DEV_COUNT=0;
+
 include ("config.php");
 
 $DEBUG = true;
@@ -82,11 +84,15 @@ if (mysqli_connect_errno ()) {
 			<h2>Get PAC!</h2>
 			<p align="center">Find your Device Below!</p>
 			<form method="get" align="right">
+				<input type="radio" name="type" id="unofficial" value="unofficial"
+					<?php if($InOrOut=='unofficial'){ echo " checked";}?> />
+				<label for="unofficial"
+					style="-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">Unofficial</label>
 				<input type="radio" name="type" id="nightly" value="nightly"
 					<?php if($InOrOut=='nightly' || $InOrOut==''){ echo " checked";}?> />
 				<label for="nightly"
 					style="-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">Nighlies</label>
-				<input type="radio" name="type" id="stable" value="stable"
+							<input type="radio" name="type" id="stable" value="stable"
 					<?php if($InOrOut=='stable'){ echo " checked";}?> /> <label
 					for="stable"
 					style="-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">Stable</label>
@@ -106,10 +112,13 @@ if (mysqli_connect_errno ()) {
 					$sql = "SELECT * FROM (`nightly`) ORDER BY (`device`) ASC";
 				} else if ($InOrOut == 'stable') {
 					$sql = "SELECT * FROM (`stable`) ORDER BY (`device`) ASC";
+				} else if ($InOrOut == 'unofficial') {
+					$sql = "SELECT * FROM (`unofficial`) ORDER BY (`device`) ASC";
 				}
 				$sqlr = call_sql ( $con, $sql );
 				while ( $row = mysqli_fetch_array ( $sqlr ) ) {
-					echo "<tr><td ";
+					$DEV_COUNT++;
+					echo "\n<tr><td ";
 					if ($Device == $row ['device']){
 						echo "style=\"background-color:#440\";";
 					}
@@ -150,7 +159,7 @@ if (mysqli_connect_errno ()) {
 			}	
 			?>
 			</form>
-			
+			<footer>Total Devices <?php echo $DEV_COUNT?></footer>
 			<footer>© pvyParts 2013</footer>
 
 			</form>
