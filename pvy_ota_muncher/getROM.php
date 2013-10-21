@@ -63,25 +63,24 @@ if (mysqli_connect_errno ()) {
 
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Get PAC! <?php
+	<title>Get ROM! <?php
 	if ($InOrOut == 'nightly') {
 		echo 'Nightly Builds';
 	} else if ($InOrOut == 'stable') {
 		echo 'Stable Builds';
 	} else {
-		// EFAULT TO SOMTHING...
-		echo 'Waka Waka Waka';
+		// DEFAULT TO SOMTHING...
+		echo ' ';
 	}
 	?></title>
 	<link rel="stylesheet" type="text/css" href="view.css" media="all">
 
 </head>
 <body id="main_body">
-	<img id="top" src="top.png" alt="">
 		<div id="form_container">
 			<img style="float: middle"
-				src="http://www.pac-rom.com/images/logo.png" alt="PAC-man logo" />
-			<h2>Get PAC!</h2>
+				src="images/venumlogo.png" alt="PAC-man logo" />
+			<h2>Rom Downloads</h2>
 			<p align="center">Find your Device Below!</p>
 			<form method="get" align="right">
 				<input type="radio" name="type" id="unofficial" value="unofficial"
@@ -109,11 +108,11 @@ if (mysqli_connect_errno ()) {
 				
 				<?php
 				if ($InOrOut == 'nightly' || $InOrOut == '') {
-					$sql = "SELECT * FROM (`nightly`) ORDER BY (`device`) ASC";
+					$sql = "SELECT * FROM (`venom_nightly`) ORDER BY (`device`) ASC";
 				} else if ($InOrOut == 'stable') {
-					$sql = "SELECT * FROM (`stable`) ORDER BY (`device`) ASC";
+					$sql = "SELECT * FROM (`venom_stable`) ORDER BY (`device`) ASC";
 				} else if ($InOrOut == 'unofficial') {
-					$sql = "SELECT * FROM (`unofficial`) ORDER BY (`device`) ASC";
+					$sql = "SELECT * FROM (`venom_unofficial`) ORDER BY (`device`) ASC";
 				}
 				$sqlr = call_sql ( $con, $sql );
 				while ( $row = mysqli_fetch_array ( $sqlr ) ) {
@@ -163,7 +162,6 @@ if (mysqli_connect_errno ()) {
 			<footer>© pvyParts 2013</footer>
 
 			</form>
-		</div> <img id="bottom" src="bottom.png" alt="">
-
+		</div> 
 </body>
 </html>

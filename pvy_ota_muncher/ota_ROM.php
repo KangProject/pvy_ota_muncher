@@ -49,17 +49,17 @@ if (mysqli_connect_errno ()) {
 // field1='value1', field2='value2', field3='value3', ...
 
 // Create tabl
-$sql = "CREATE TABLE IF NOT EXISTS nightly(device CHAR(30),version TINYTEXT,dlurl TINYTEXT, md5 CHAR(35))";
+$sql = "CREATE TABLE IF NOT EXISTS venom_nightly(device CHAR(30),version TINYTEXT,dlurl TINYTEXT, md5 CHAR(35))";
 call_sql ( $con, $sql );
 $sql = "ALTER TABLE nightly ADD PRIMARY KEY (device)";
 call_sql ( $con, $sql );
 // Create table
-$sql = "CREATE TABLE IF NOT EXISTS stable(device CHAR(30),version TINYTEXT,dlurl TINYTEXT, md5 CHAR(35))";
+$sql = "CREATE TABLE IF NOT EXISTS venom_stable(device CHAR(30),version TINYTEXT,dlurl TINYTEXT, md5 CHAR(35))";
 call_sql ( $con, $sql );
 $sql = "ALTER TABLE stable ADD PRIMARY KEY (device)";
 call_sql ( $con, $sql );
 // Create table
-$sql = "CREATE TABLE IF NOT EXISTS unofficial(device CHAR(30),version TINYTEXT,dlurl TINYTEXT, md5 CHAR(35))";
+$sql = "CREATE TABLE IF NOT EXISTS venom_unofficial(device CHAR(30),version TINYTEXT,dlurl TINYTEXT, md5 CHAR(35))";
 call_sql ( $con, $sql );
 $sql = "ALTER TABLE unofficial ADD PRIMARY KEY (device)";
 call_sql ( $con, $sql );
@@ -68,13 +68,13 @@ call_sql ( $con, $sql );
 if ($InOrOut == "nightly") {
 	// check pass
 	if ($Password == $Pass && $Device != null) {
-		$sql = "INSERT INTO nightly (device, version, dlurl, md5) 
+		$sql = "INSERT INTO venom_nightly (device, version, dlurl, md5) 
 				VALUES ('$Device', '$Ver','$Download', '$Md5')
 				ON DUPLICATE KEY UPDATE
 				device='$Device', version='$Ver', dlurl='$Download', md5='$Md5'";
 		call_sql ( $con, $sql );
 		//echo "";
-		$sql = "select * from nightly WHERE device='$Device'";
+		$sql = "select * from venom_nightly WHERE device='$Device'";
 		$rslt = mysqli_fetch_array ( call_sql ( $con, $sql ) );
 		//echo $rslt ['dlurl'];
 		//echo ",";
@@ -83,7 +83,7 @@ if ($InOrOut == "nightly") {
 		//echo $rslt ['version'];
 		//echo ",";
 		//echo $rslt ['md5'];
-		header( 'Location: http://www.pac-rom.com/ota/getPAC.php?device='.$Device."&type=".$InOrOut );
+		//header( 'Location: http://www.pac-rom.com/ota/getPAC.php?device='.$Device."&type=".$InOrOut );
 						
 	} else {
 		// no permision!
@@ -92,13 +92,13 @@ if ($InOrOut == "nightly") {
 } else if ($InOrOut == "stable") {
 	// check pass
 	if ($Password == $Pass && $Device != null) {
-		$sql = "INSERT INTO stable (device, version, dlurl, md5) 
+		$sql = "INSERT INTO venom_stable (device, version, dlurl, md5) 
 				VALUES ('$Device', '$Ver','$Download', '$Md5')
 				ON DUPLICATE KEY UPDATE
 				device='$Device', version='$Ver', dlurl='$Download', md5='$Md5'";
 		call_sql ( $con, $sql );
 		//echo "";
-		$sql = "select * from stable WHERE device='$Device'";
+		$sql = "select * from venom_stable WHERE device='$Device'";
 		$rslt = mysqli_fetch_array ( call_sql ( $con, $sql ) );
 		//echo $rslt [dlurl];
 		//echo ",";
@@ -108,7 +108,7 @@ if ($InOrOut == "nightly") {
 		//echo ",";
 		//echo $rslt [md5];
 		//echo "";
-		header( 'Location: http://www.pac-rom.com/ota/getPAC.php?device='.$Device."&type=".$InOrOut );
+		//header( 'Location: http://www.pac-rom.com/ota/getPAC.php?device='.$Device."&type=".$InOrOut );
 				
 	} else {
 		// no permision!
@@ -116,7 +116,7 @@ if ($InOrOut == "nightly") {
 	}
 } else if ($InOrOut == "checkn") {
 	// send the details to the remote
-	$sql = "SELECT * from nightly WHERE device='$Device'";
+	$sql = "SELECT * from venom_nightly WHERE device='$Device'";
 	$sqlr = call_sql ( $con, $sql );
 	$rslt = mysqli_fetch_array ( $sqlr );
 	
@@ -153,7 +153,7 @@ if ($InOrOut == "nightly") {
 	// no device on file!
 } else if ($InOrOut == "checks") {
 	// send the details to the remote
-	$sql = "SELECT * from stable WHERE device='$Device'";
+	$sql = "SELECT * from venom_stable WHERE device='$Device'";
 	$sqlr = call_sql ( $con, $sql );
 	$rslt = mysqli_fetch_array ( $sqlr );
 	
@@ -190,7 +190,7 @@ if ($InOrOut == "nightly") {
 	// no device on file!
 }  else if ($InOrOut == "checku") {
 	// send the details to the remote
-	$sql = "SELECT * from unofficial WHERE device='$Device'";
+	$sql = "SELECT * from venom_unofficial WHERE device='$Device'";
 	$sqlr = call_sql ( $con, $sql );
 	$rslt = mysqli_fetch_array ( $sqlr );
 	
@@ -228,13 +228,13 @@ if ($InOrOut == "nightly") {
 } else if ($InOrOut == 'unofficial'){
 	// check pass
 	if ($Password == $Pass && $Device != null) {
-		$sql = "INSERT INTO unofficial (device, version, dlurl, md5)
+		$sql = "INSERT INTO venom_unofficial (device, version, dlurl, md5)
 		VALUES ('$Device', '$Ver','$Download', '$Md5')
 		ON DUPLICATE KEY UPDATE
 		device='$Device', version='$Ver', dlurl='$Download', md5='$Md5'";
 		call_sql ( $con, $sql );
 		//echo "";
-		$sql = "select * from unofficial WHERE device='$Device'";
+		$sql = "select * from venom_unofficial WHERE device='$Device'";
 		$rslt = mysqli_fetch_array ( call_sql ( $con, $sql ) );
 		//echo $rslt [dlurl];
 		//echo ",";
@@ -244,14 +244,14 @@ if ($InOrOut == "nightly") {
 		//echo ",";
 		//echo $rslt [md5];
 		//echo "";
-		header( 'Location: http://www.pac-rom.com/ota/getPAC.php?device='.$Device."&type=".$InOrOut );
+		//header( 'Location: http://www.pac-rom.com/ota/getPAC.php?device='.$Device."&type=".$InOrOut );
 	
 	} else {
 	// no permision!
 	echo "#BLAMETYLER,NOT_AUTHORISED";
 	}
 	
-} else {
+} else {//
 	echo "#BLAMETYLER,NO_PARAMS";
 }
 ?>

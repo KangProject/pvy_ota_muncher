@@ -19,16 +19,14 @@ $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>OTA Muncher!</title>
 	<link rel="stylesheet" type="text/css" href="view.css" media="all">
-
+ 
 </head>
 <body id="main_body">
-	<img id="top" src="top.png" alt="">
 		<div id="form_container_muncher">
-			<h1>
-				<img style="float: middle"
-					src="http://www.pac-rom.com/images/logo.png" alt="PAC-man logo" />
-			</h1>
-			<form action="ota_PAC.php" method="get">
+			<form action="ota_ROM.php" method="get">
+							<img style="float: middle"
+					src="images/venumlogo.png" alt="logo" />
+			
 				<div class="form_description">
 					<h2>OTA Muncher!</h2>
 
@@ -94,7 +92,11 @@ $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
 							Rom Status
 							<cap>(Hint: Unofficial-Official = Self Built)</cap>
 						</p> <input id="unofficial" type="radio"  name="type" value="unofficial" checked>
-						<label for="unofficial" style="margin: 2px;width:150px;">Unofficial-Official</label><br>								
+						<label for="unofficial" style="margin: 2px;width:150px;">Unofficial-Official</label><br>
+						<input id="Nightly" type="radio"  name="type" value="nightly" checked>
+						<label for="Nightly" style="margin: 2px;width:150px;">Nightly</label><br>
+						<input id="Stable" type="radio"  name="type" value="stable" checked>
+						<label for="Stable" style="margin: 2px;width:150px;">Stable</label><br>								
 					
 					</li>
 					<li>
@@ -108,7 +110,5 @@ $Password = htmlspecialchars ( hash ( 'md5', $_GET ['pass'] ) );
 
 			</form>
 		</div>
-	<img id="bottom" src="bottom.png" alt="">
-
 </body>
 </html>
